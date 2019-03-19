@@ -1,0 +1,40 @@
+{
+  "pages": [
+    "pages/home/home",
+    "pages/index/index",
+    "pages/logs/logs",
+    "pages/user/user"
+  ],
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#fff",
+    "navigationBarTitleText": "WeChat",
+    "navigationBarTextStyle": "black"
+  },
+  "tabBar": {
+    "color": "#7A7E83",
+    "selectedColor": "#3cc51f",
+    "borderStyle": "black",
+    "backgroundColor": "#ffffff",
+    "list": [
+      {
+        "pagePath": "pages/home/home",
+        "text": "杂志",
+        "selectedIconPath": "images/magazine_select.png",
+        "iconPath": "images/magazine.png"
+      },
+      {
+        "pagePath": "pages/logs/logs",
+        "text": "杂志架",
+        "selectedIconPath": "images/magazineRack_select.png",
+        "iconPath": "images/magazineRack.png"
+      },
+      {
+        "pagePath": "pages/user/user",
+        "text": "杂志架",
+        "selectedIconPath": "images/user_select.png",
+        "iconPath": "images/user.png"
+      }
+    ]
+  }
+}

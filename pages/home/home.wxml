@@ -1,0 +1,9 @@
+<!--pages/home/home.wxml-->
+
+<text>pages/home/home.wxml</text>
+<scroll-view class='article'>
+<view class='article-item'>111</view>
+<view class='article-item'>1111</view>
+<view class='article-item'>1111</view>
+<view class='article-item'>111</view>
+</scroll-view>
