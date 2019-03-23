@@ -1,3 +1,2 @@
-<view>
-  <button>{{title}}</button>
-</view>
+<import src="../wxParse/wxParse.wxml"/>
+<template is="wxParse" data="{{wxParseData:article.nodes}}"/>

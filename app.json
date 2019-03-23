@@ -3,7 +3,10 @@
     "pages/home/home",
     "pages/index/index",
     "pages/logs/logs",
-    "pages/user/user"
+    "pages/user/user",
+    "pages/douban/douban",
+    "pages/movie/movie"
+
   ],
   "window": {
     "backgroundTextStyle": "light",
@@ -19,9 +22,15 @@
     "list": [
       {
         "pagePath": "pages/home/home",
-        "text": "杂志",
+        "text": "豆瓣一刻",
         "selectedIconPath": "images/magazine_select.png",
         "iconPath": "images/magazine.png"
+      },
+      {
+        "pagePath": "pages/movie/movie",
+        "text": "电影",
+        "selectedIconPath": "images/movie_select.png",
+        "iconPath": "images/movie.png"
       },
       {
         "pagePath": "pages/logs/logs",
@@ -31,7 +40,7 @@
       },
       {
         "pagePath": "pages/user/user",
-        "text": "杂志架",
+        "text": "我的",
         "selectedIconPath": "images/user_select.png",
         "iconPath": "images/user.png"
       }
