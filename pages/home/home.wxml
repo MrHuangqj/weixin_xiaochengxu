@@ -1,9 +1,18 @@
 <!--pages/home/home.wxml-->
-
-<text>pages/home/home.wxml</text>
-<scroll-view class='article'>
-<view class='article-item'>111</view>
-<view class='article-item'>1111</view>
-<view class='article-item'>1111</view>
-<view class='article-item'>111</view>
+<scroll-view scroll-x="true" class='top-nav'>
+  <text wx:for="{{AllCategories}}" wx:key="item.id" bindtap="switchTab" class="nav-item {{navItem==index?'active':''}}" data-index='{{index}}' data-id="{{item.id}}">{{item.title}}</text>
 </scroll-view>
+
+<view class='message'>
+  <view wx:for="{{navItemMessage}}" wx:key="index" bindtap='gotoDouban' data-url='{{navItemMessage[index].url}}' class='message-item'>
+    <view class='message-item-title'>{{navItemMessage[index].title}}</view>
+    <view class='message-item-description'>
+      <text class='message-item-description-text'>{{navItemMessage[index].description}}</text>
+      <image class='message-item-description-image' wx:if="{{navItemMessage[index].image}}" src="{{navItemMessage[index].image}}"></image>
+    </view>
+  </view>
+  <view class="weui-loadmore" hidden="{{isHideLoadMore}}">
+    <view class="weui-loading"></view>
+    <view class="weui-loadmore__tips">正在加载</view>
+  </view>
+</view>
