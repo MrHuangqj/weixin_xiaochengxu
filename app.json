@@ -1,11 +1,13 @@
 {
   "pages": [
-    "pages/user/user",
+ 
     "pages/home/home",
     "pages/index/index",
     "pages/logs/logs",
     "pages/douban/douban",
-    "pages/movie/movie"
+    "pages/movie/movie",
+    "pages/weather/weather",
+    "pages/user/user"
 
   ],
   "window": {
@@ -33,10 +35,10 @@
         "iconPath": "images/movie.png"
       },
       {
-        "pagePath": "pages/logs/logs",
-        "text": "杂志架",
-        "selectedIconPath": "images/magazineRack_select.png",
-        "iconPath": "images/magazineRack.png"
+        "pagePath": "pages/weather/weather",
+        "text": "天气",
+        "selectedIconPath": "images/weather_select.png",
+        "iconPath": "images/weather.png"
       },
       {
         "pagePath": "pages/user/user",

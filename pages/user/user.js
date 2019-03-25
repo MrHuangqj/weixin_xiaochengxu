@@ -57,7 +57,24 @@ Page({
     wx.request({
       url: `https://www.apiopen.top/weatherApi?city=${city}`,
       success:(res)=>{
-        console.log(res.data.data)
+        // console.log(res.data.data)
+        /**
+         * 对获取的天气数据进行处理
+         */
+        let weather = res.data.data.forecast;
+        res.data.data.wendu = res.data.data.wendu +"°";
+        weather.forEach((item,i)=>{
+          item.high = item.high.match(/\d+/g)[0] +'°';
+          item.low = item.low.match(/\d+/g)[0] + '°';
+          let date = item.date.split("星期");
+          if(i==0)
+            item.date = `今天${date[0]}`
+          else if (i == 1)
+            item.date = `明天${date[0]}`
+            else
+              item.date = `周${date[1]}${date[0]}`
+        })
+
         this.setData({
           weather: res.data.data
         })
