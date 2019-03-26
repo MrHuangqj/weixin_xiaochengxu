@@ -1,14 +1,12 @@
 {
   "pages": [
- 
+    "pages/movie/movie",
+    "pages/weather/weather",
     "pages/home/home",
     "pages/index/index",
     "pages/logs/logs",
     "pages/douban/douban",
-    "pages/movie/movie",
-    "pages/weather/weather",
     "pages/user/user"
-
   ],
   "window": {
     "backgroundTextStyle": "light",

@@ -4,9 +4,9 @@ var qqmapsdk = new QQMapWX({
 });
 Page({
   /**
-   * 获取当前位置所在城市
+   * 获取当前位置所在经纬度
    */
-  getLocation: function () {
+  getLocation: function() {
     wx.getLocation({
       type: 'wgs84', //默认为 wgs84 返回 gps 坐标，gcj02 返回可用于 wx.openLocation 的坐标 
       altitude: true,
@@ -28,17 +28,18 @@ Page({
   /**
    * 获取当前经纬度的城市
    */
-  loadCity: function (longitude, latitude) {
+  loadCity: function(longitude, latitude) {
     qqmapsdk.reverseGeocoder({
       location: {
         latitude: latitude,
         longitude: longitude
       },
       success: (res) => {
-        console.log(res.result.address_component.city)
-        this.cityWeather(res.result.address_component.city)//获取天气
+        // console.log(res)
+        // console.log(res.result.address_component.district)
+        this.cityWeather(res.result.address_component.district) //获取天气
         this.setData({
-          city: res.result.address_component.city
+          city: res.result.address_component.city + res.result.address_component.district
         })
       },
       complete: () => {
@@ -51,13 +52,13 @@ Page({
 
   },
   /**
- * 获取当前城市的天气
- */
-  cityWeather: function (city) {
+   * 获取当前城市的天气
+   */
+  cityWeather: function(city) {
     wx.request({
       url: `https://www.apiopen.top/weatherApi?city=${city}`,
       success: (res) => {
-        // console.log(res.data.data)
+
         /**
          * 对获取的天气数据进行处理
          */
@@ -74,7 +75,7 @@ Page({
           else
             item.date = `周${date[1]}${date[0]}`
         })
-
+        console.log(res.data.data)
         this.setData({
           weather: res.data.data
         })
@@ -93,56 +94,56 @@ Page({
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function (options) {
+  onLoad: function(options) {
     this.getLocation();
   },
 
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
-  onReady: function () {
+  onReady: function() {
 
   },
 
   /**
    * 生命周期函数--监听页面显示
    */
-  onShow: function () {
+  onShow: function() {
 
   },
 
   /**
    * 生命周期函数--监听页面隐藏
    */
-  onHide: function () {
+  onHide: function() {
 
   },
 
   /**
    * 生命周期函数--监听页面卸载
    */
-  onUnload: function () {
+  onUnload: function() {
 
   },
 
   /**
    * 页面相关事件处理函数--监听用户下拉动作
    */
-  onPullDownRefresh: function () {
+  onPullDownRefresh: function() {
 
   },
 
   /**
    * 页面上拉触底事件的处理函数
    */
-  onReachBottom: function () {
+  onReachBottom: function() {
 
   },
 
   /**
    * 用户点击右上角分享
    */
-  onShareAppMessage: function () {
+  onShareAppMessage: function() {
 
   }
 })

@@ -1,2 +1,19 @@
 <!--pages/movie/movie.wxml-->
-<text>pages/movie/movie.wxml</text>
+<view class='title'>{{movie.title}}{{count}}</view>
+<view wx:for="{{movie.subjects}}" wx:key="this" class='movie'>
+  <view class='movie-message'>
+    <image class='movie-message-image' src="{{item.images.small}}"></image>
+    <view class='movie-message-main'>
+      <text class='movie-name' >{{item.title}}</text>
+      <text class='movie-average' >评分: {{item.rating.average}}</text>
+      <text class='movie-director'>导演: {{item.directors[0].name}}</text>
+      <view class='movie-star'>
+      主演: <text wx:for="{{item.casts}}"  wx:key="this">/ {{item.name}} </text>
+      </view>
+    </view>
+  </view>
+  <view class='movie-buy'>
+    <text class='movie-buy-people'>{{item.collect_count}}人看过</text>
+    <button class='movie-buy-button'>购票</button>
+  </view>
+</view>
