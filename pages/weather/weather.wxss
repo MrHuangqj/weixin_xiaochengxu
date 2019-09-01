@@ -1,0 +1,15 @@
+/* pages/weather/weather.wxss */
+.weather{
+  background-image: linear-gradient(45deg, rgba(165, 0, 252, 0.98) ,rgba(252, 0, 0,0.5));
+  box-shadow: 7px 5px 10px gray;
+}
+.weather-item {
+  font-size: 30rpx;
+  margin: 30rpx 0;
+  padding: 30rpx 10rpx;
+  display: flex;
+  justify-content: space-between;
+  box-shadow: 8px 6px 10px gray;
+  background-image: linear-gradient(35deg, rgba(165, 0, 252, 0.98) ,rgba(252, 0, 0,0.5));
+}
+

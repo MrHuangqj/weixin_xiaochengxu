@@ -1,0 +1,17 @@
+<view style='padding:0 20rpx;'>
+  <view class='weather'>
+    <view style='font-size:50rpx;'>{{city}}</view>
+    <view style='font-size:100rpx;'>{{weather.wendu}}</view>
+    <view style='padding:10rpx;'>{{weather.ganmao}}</view>
+  </view>
+  
+  <view style='padding:0 20rpx;'>
+    <view class='weather-item' wx:for="{{weather.forecast}}" wx:key="index">
+      <view>{{item.date}}</view>
+      <view>{{item.type}}</view>
+      <view>{{item.high}}~{{item.low}}</view>
+    </view>
+    <!-- <view>风力:{{item.fengli}}</view> -->
+    <!-- <view>风向:{{item.fengxiang}}</view> -->
+  </view>
+</view>

@@ -1,5 +1,3 @@
-// pages/movie/movie.js
-
 var QQMapWX = require('../../libs/qqmap-wx-jssdk.js');
 var qqmapsdk = new QQMapWX({
   key: 'PHYBZ-QW4K4-QU2U4-XC6F4-7ORX5-4ABSN'
@@ -13,13 +11,20 @@ Page({
       type: 'wgs84', //默认为 wgs84 返回 gps 坐标，gcj02 返回可用于 wx.openLocation 的坐标 
       altitude: true,
       success: (res) => {
-        console.log(res.longitude, res.latitude)
-        this.loadCity(res.longitude, res.latitude)
+        // success  
+        let longitude = res.longitude
+        let latitude = res.latitude
+        this.setData({
+          position: {
+            longitude: longitude,
+            latitude: latitude
+          }
+        })
+        // console.log(this.data.city);
+        this.loadCity(longitude, latitude)
       }
     })
   },
-
-
   /**
    * 获取当前经纬度的城市
    */
@@ -30,11 +35,11 @@ Page({
         longitude: longitude
       },
       success: (res) => {
-        let city = res.result.address_component.city.replace("市", "")
-        console.log(city)
-        this.getMovie(city)
+        // console.log(res)
+        // console.log(res.result.address_component.district)
+        this.cityWeather(res.result.address_component.district) //获取天气
         this.setData({
-          city: city
+          city: res.result.address_component.city + res.result.address_component.district
         })
       },
       complete: () => {
@@ -46,46 +51,53 @@ Page({
     })
 
   },
-
   /**
-   * 获取当前城市上映电影信息
+   * 获取当前城市的天气
    */
-  getMovie: function (city = this.data.city, start=0, count=10) {
+  cityWeather: function(city) {
     wx.request({
-      header: {
-        "Content-Type": "application/text"
-      },
-      url: `https://api.douban.com/v2/movie/in_theaters?apikey=0b2bdeda43b5688921839c8ecb20399b&city=${city}&start=${start}&count=${count}&client=&udid=`,
+      url: `https://www.apiopen.top/weatherApi?city=${city}`,
       success: (res) => {
-        console.log(res.data);
-        this.setData({
-          movie: res.data,
-          count: res.data.count,
-          total: res.data.total
+
+        /**
+         * 对获取的天气数据进行处理
+         */
+        let weather = res.data.data.forecast;
+        res.data.data.wendu = res.data.data.wendu + "°";
+        weather.forEach((item, i) => {
+          item.high = item.high.match(/\d+/g)[0] + '°';
+          item.low = item.low.match(/\d+/g)[0] + '°';
+          let date = item.date.split("星期");
+          if (i == 0)
+            item.date = `今天${date[0]}`
+          else if (i == 1)
+            item.date = `明天${date[0]}`
+          else
+            item.date = `周${date[1]}${date[0]}`
         })
-      },
-      fail: function(res) {
-        console.log(res);
+        console.log(res.data.data)
+        this.setData({
+          weather: res.data.data
+        })
       }
     })
-
   },
   /**
    * 页面的初始数据
    */
   data: {
+    position: {},
     city: '',
-    movie: [],
-    count: '',
-    total: ''
+    weather: {}
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
-      this.getLocation();   
+    this.getLocation();
   },
+
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
@@ -125,8 +137,7 @@ Page({
    * 页面上拉触底事件的处理函数
    */
   onReachBottom: function() {
-    if (this.data.count < this.data.total)
-      this.getMovie(this.data.city, 0, this.data.count + 10)
+
   },
 
   /**

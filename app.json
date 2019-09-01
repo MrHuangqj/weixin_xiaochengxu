@@ -1,12 +1,12 @@
 {
   "pages": [
+    "pages/movie/movie",
+    "pages/weather/weather",
     "pages/home/home",
     "pages/index/index",
     "pages/logs/logs",
-    "pages/user/user",
     "pages/douban/douban",
-    "pages/movie/movie"
-
+    "pages/user/user"
   ],
   "window": {
     "backgroundTextStyle": "light",
@@ -33,10 +33,10 @@
         "iconPath": "images/movie.png"
       },
       {
-        "pagePath": "pages/logs/logs",
-        "text": "杂志架",
-        "selectedIconPath": "images/magazineRack_select.png",
-        "iconPath": "images/magazineRack.png"
+        "pagePath": "pages/weather/weather",
+        "text": "天气",
+        "selectedIconPath": "images/weather_select.png",
+        "iconPath": "images/weather.png"
       },
       {
         "pagePath": "pages/user/user",
@@ -45,5 +45,10 @@
         "iconPath": "images/user.png"
       }
     ]
+  },
+  "permission": {
+    "scope.userLocation": {
+      "desc": "你的位置信息将用于小程序位置接口的效果展示"
+    }
   }
 }

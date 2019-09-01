@@ -29,9 +29,9 @@ Page({
         // str = str.pop()
         // str = str.split("后写下你的评论");
         // article = `${article}<p>文章评论:</p>${str[1]}`;
-        // article = article.replace(`豆瓣每日内容精选`, "");
-        // article = article.replace(`&#124`, "");
-        // article = article.replace(`&copy;`, "");
+        article = article.replace(`豆瓣每日内容精选`, "");
+        article = article.replace(`&#124`, "");
+        article = article.replace(`&copy;`, "");
 
         // console.log(str);
         // console.log(star);
